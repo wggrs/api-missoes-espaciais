@@ -3,7 +3,7 @@
 ## Identificação
 
 - **Aluno:** Arthur Wiggers
-- **Curso:** [preencher com o nome do curso]
+- **Curso:** 2°info.
 - **Unidade Curricular:** Desenvolver Serviços Web
 
 ## Descrição
