@@ -1,0 +1,21 @@
+name: Testes da API
+on: [push, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar dependências
+        run: composer install --no-interaction --prefer-dist
+      - name: Verificar sintaxe PHP
+        run: php -l index.php
+      - name: Executar testes HTTP
+        run: |
+          php -S localhost:8080 index.php > /tmp/missoes-api.log 2>&1 &
+          for tentativa in 1 2 3 4 5; do
+            if curl -fsS http://localhost:8080/status; then break; fi
+            sleep 1
+          done
+          bash testar-api.sh
